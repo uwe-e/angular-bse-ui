@@ -14,18 +14,32 @@ module.exports = function (grunt) {
         dist: 'dist',
         filename: 'bse.ui',
         meta: {
-            modules: 'angular.module("bse.ui", [<%= srcModules %>]);'
+            modules: 'angular.module("bse.ui", [<%= srcModules %>]);',
+            tplmodules: 'angular.module("bse.ui.tpls", [<%= tplModules %>]);',
+            all: 'angular.module("bse.ui", ["bse.ui.tpls", <%= srcModules %>]);'
         },
         concat: {
             dist: {
                 src: [], //src filled in by build task
                 dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
+            },
+            dist_tpls: {
+                //options: {
+                //    banner: '<%= meta.banner %><%= meta.all %>\n<%= meta.tplmodules %>\n',
+                //    footer: '<%= meta.cssInclude %>'
+                //},
+                src: [], //src filled in by build task
+                dest: '<%= dist %>/<%= filename %>-tpls-<%= pkg.version %>.js'
             }
         },
         uglify: {
             dist: {
                 src: ['<%= concat.dist.dest %>'],
                 dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.min.js'
+            },
+            dist_tpls: {
+                src: ['<%= concat.dist_tpls.dest %>'],
+                dest: '<%= dist %>/<%= filename %>-tpls-<%= pkg.version %>.min.js'
             }
         }
     });
@@ -49,21 +63,21 @@ module.exports = function (grunt) {
             });
         }
         function enquote(str) {
-            return '"${str}"';
+            return '"' + str + '"';
         }
         function enquoteUibDir(str) {
             return enquote('bse/${str}');
         }
-
+        
         var module = {
             name: name,
-            moduleName: enquote('bse.ui.${name}'),
+            moduleName: enquote('bse.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
-            srcFiles: grunt.file.expand(['src/${name}/*.js', '!src/${name}/index.js']),
+            srcFiles: grunt.file.expand('src/' + name + '/*.js'),
             cssFiles: grunt.file.expand('src/${name}/*.css'),
-            tplFiles: grunt.file.expand('template/${name}/*.html'),
-            //tpljsFiles: grunt.file.expand('template/${name}/*.html.js'),
-            tplModules: grunt.file.expand('template/${name}/*.html').map(enquoteUibDir),
+            tplFiles: grunt.file.expand('template/' + name + '/*.html'),
+            tpljsFiles: grunt.file.expand('template/' + name + '/*.html.js'),
+            tplModules: grunt.file.expand('template/' + name + '/*.html').map(enquote),
             dependencies: dependenciesForModule(name),
             //docs: {
             //    md: grunt.file.expand('src/${name}/docs/*.md')
@@ -74,6 +88,8 @@ module.exports = function (grunt) {
             //      .map(grunt.file.read).join('\n')
             //}
         };
+
+        console.log('find: ' + module.name + ' ' + module.moduleName);
         var styles = {
             css: [],
             js: []
@@ -90,6 +106,8 @@ module.exports = function (grunt) {
 
     function dependenciesForModule(name) {
         var deps = [];
+
+        
         grunt.file.expand('src/' + name + '/*.js')
         .map(grunt.file.read)
         .forEach(function (contents) {
@@ -100,9 +118,12 @@ module.exports = function (grunt) {
             var depArrayEnd = contents.indexOf(']', depArrayStart);
             var dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
             dependencies.split(',').forEach(function (dep) {
+  console.log('dep ' + depArrayStart + ' ' + depArrayEnd + ' ' + dep);              
                 if (dep.indexOf('bse.ui.') > -1) {
+
                     var depName = dep.trim().replace('bse.ui.', '').replace(/['"]/g, '');
                     if (deps.indexOf(depName) < 0) {
+                        //console.log("name: " + depName);
                         deps.push(depName);
                         //Get dependencies for this new dependency
                         deps = deps.concat(dependenciesForModule(depName));
@@ -135,12 +156,16 @@ module.exports = function (grunt) {
         //If arguments define what modules to build, build those. Else, everything
         var modules = grunt.config('modules');
         grunt.config('srcModules', _.pluck(modules, 'moduleName'));
-
+        grunt.config('tplModules', _.pluck(modules, 'tplModules').filter(function (tpls) { return tpls.length > 0; }));
 
         var srcFiles = _.pluck(modules, 'srcFiles');
+        var tpljsFiles = _.pluck(modules, 'tpljsFiles');
         //Set the concat task to concatenate the given src modules
         grunt.config('concat.dist.src', grunt.config('concat.dist.src')
                      .concat(srcFiles));
+        //Set the concat-with-templates task to concat the given src & tpl modules
+        grunt.config('concat.dist_tpls.src', grunt.config('concat.dist_tpls.src')
+                     .concat(srcFiles).concat(tpljsFiles));
 
         grunt.task.run(['concat', 'uglify']);
         

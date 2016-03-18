@@ -1,4 +1,4 @@
-﻿angular.module("bse.ui.icontabs", [])
+﻿angular.module('bse.ui.icontabs', [])
     .controller('BseIconTabsetController', ['$scope', function ($scope) {
         var ctrl = this,
             oldIndex;
