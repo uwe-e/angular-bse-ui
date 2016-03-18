@@ -78,10 +78,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src\icontabs\icontabs.js" />
+    <Content Include="template\icontabs\icontabset.html" />
+    <Content Include="template\icontabs\icontab.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dist\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
