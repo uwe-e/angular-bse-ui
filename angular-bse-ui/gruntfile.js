@@ -68,7 +68,7 @@ module.exports = function (grunt) {
         function enquoteUibDir(str) {
             return enquote('bse/${str}');
         }
-        
+
         var module = {
             name: name,
             moduleName: enquote('bse.ui.' + name),
@@ -107,30 +107,30 @@ module.exports = function (grunt) {
     function dependenciesForModule(name) {
         var deps = [];
 
-        
-        grunt.file.expand('src/' + name + '/*.js')
-        .map(grunt.file.read)
-        .forEach(function (contents) {
-            //Strategy: find where module is declared,
-            //and from there get everything inside the [] and split them by comma
-            var moduleDeclIndex = contents.indexOf('angular.module(');
-            var depArrayStart = contents.indexOf('[', moduleDeclIndex);
-            var depArrayEnd = contents.indexOf(']', depArrayStart);
-            var dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
-            dependencies.split(',').forEach(function (dep) {
-  console.log('dep ' + depArrayStart + ' ' + depArrayEnd + ' ' + dep);              
-                if (dep.indexOf('bse.ui.') > -1) {
 
-                    var depName = dep.trim().replace('bse.ui.', '').replace(/['"]/g, '');
-                    if (deps.indexOf(depName) < 0) {
-                        //console.log("name: " + depName);
-                        deps.push(depName);
-                        //Get dependencies for this new dependency
-                        deps = deps.concat(dependenciesForModule(depName));
+        grunt.file.expand('src/' + name + '/*.js')
+            .map(grunt.file.read)
+            .forEach(function (contents) {
+                //Strategy: find where module is declared,
+                //and from there get everything inside the [] and split them by comma
+                var moduleDeclIndex = contents.indexOf('angular.module(');
+                var depArrayStart = contents.indexOf('[', moduleDeclIndex);
+                var depArrayEnd = contents.indexOf(']', depArrayStart);
+                var dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
+                dependencies.split(',').forEach(function (dep) {
+                    console.log('dep ' + depArrayStart + ' ' + depArrayEnd + ' ' + dep);
+                    if (dep.indexOf('bse.ui.') > -1) {
+
+                        var depName = dep.trim().replace('bse.ui.', '').replace(/['"]/g, '');
+                        if (deps.indexOf(depName) < 0) {
+                            //console.log("name: " + depName);
+                            deps.push(depName);
+                            //Get dependencies for this new dependency
+                            deps = deps.concat(dependenciesForModule(depName));
+                        }
                     }
-                }
+                });
             });
-        });
         return deps;
     }
 
@@ -168,6 +168,6 @@ module.exports = function (grunt) {
                      .concat(srcFiles).concat(tpljsFiles));
 
         grunt.task.run(['concat', 'uglify']);
-        
+
     });
 };
