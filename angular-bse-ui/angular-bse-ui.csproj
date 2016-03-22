@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="gruntfile.js" />
-    <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
     <Content Include="bower.json" />
@@ -79,9 +78,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src\application\application.js" />
     <Content Include="src\icontabs\icontabs.js" />
+    <Content Include="src\tiles\tiles.js" />
+    <Content Include="src\views\views.js" />
+    <Content Include="template\application\content.html" />
     <Content Include="template\icontabs\icontabset.html" />
     <Content Include="template\icontabs\icontab.html" />
+    <Content Include="template\tiles\tilecontainer.html" />
+    <Content Include="template\views\content.html" />
+    <Content Include="template\views\footer.html" />
+    <Content Include="template\views\header.html" />
+    <Content Include="template\views\headernavigation.html" />
+    <Content Include="template\views\view.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
