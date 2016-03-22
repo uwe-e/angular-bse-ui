@@ -50,10 +50,10 @@ module.exports = function (grunt) {
         },
         html2js: {
             dist: {
-                //options: {
-                //    module: null, // no bundle module for all the html2js templates
-                //    base: '.'
-                //},
+                options: {
+                    module: null, // no bundle module for all the html2js templates
+                    base: '.'
+                },
                 files: [{
                     expand: true,
                     src: ['template/**/*.html'],

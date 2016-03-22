@@ -63,24 +63,24 @@
             }
         }
     }])
-    .directive('BseIconTabset', function () {
+    .directive('bseIconTabset', function () {
         return {
             transclude: true,
             replace: true,
             templateUrl: function (element, attrs) {
-                return attrs.templateUrl || 'bse/template/icontabs/icontabset.html';
+                return attrs.templateUrl || 'template/icontabs/icontabset.html';
             },
             controller: 'BseIconTabsetController',
             restrict: 'EA'
         };
     })
-    .directive('BseIconTab', ['$document', function ($document) {
+    .directive('bseIconTab', ['$document', function ($document) {
         return {
             require: '^BseIconTabset',
             transclude: true,
             replace: true,
             templateUrl: function (element, attrs) {
-                return attrs.templateUrl || 'bse/template/icontabs/icontab.html';
+                return attrs.templateUrl || 'template/icontabs/icontab.html';
             },
             restrict: 'EA',
             controller: function () {
