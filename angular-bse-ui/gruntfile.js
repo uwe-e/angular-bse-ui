@@ -6,9 +6,7 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkID=513275&clcid=0x
 module.exports = function (grunt) {
 
     require('load-grunt-tasks')(grunt);
-    //grunt.loadNpmTasks('grunt-contrib-concat');
-    //grunt.loadNpmTasks('grunt-contrib-uglify');
-    //grunt.loadNpmTasks('grunt-html2js');
+
     // Project configuration.
     grunt.util.linefeed = '\n';
 
@@ -20,7 +18,8 @@ module.exports = function (grunt) {
         meta: {
             modules: 'angular.module("bse.ui", [<%= srcModules %>]);',
             tplmodules: 'angular.module("bse.ui.tpls", [<%= tplModules %>]);',
-            all: 'angular.module("bse.ui", ["bse.ui.tpls", <%= srcModules %>]);'
+            all: 'angular.module("bse.ui", ["bse.ui.tpls", <%= srcModules %>]);',
+            cssFile: '<%= dist %>/<%= filename %>-<%= pkg.version %>.css',
         },
         concat: {
             dist: {
@@ -63,6 +62,20 @@ module.exports = function (grunt) {
         },
         clean: {
             src: ["template/**/*.html.js"]
+        },
+        sass: {
+            default: {
+                files: {
+                    '<%= meta.cssFile %>': 'dist/imports.scss'
+                }
+            }
+        },
+        sass_globbing: {
+            your_target: {
+                files: {
+                    'dist/imports.scss': 'src/**/*.scss',
+                }
+            }
         }
     });
 
@@ -101,7 +114,6 @@ module.exports = function (grunt) {
             moduleName: enquote('bse.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
             srcFiles: grunt.file.expand('src/' + name + '/*.js'),
-            cssFiles: grunt.file.expand('src/${name}/*.css'),
             tplFiles: grunt.file.expand('template/' + name + '/*.html'),
             tpljsFiles: grunt.file.expand('template/' + name + '/*.html.js'),
             tplModules: grunt.file.expand('template/' + name + '/*.html').map(enquote),
@@ -117,17 +129,6 @@ module.exports = function (grunt) {
             //}
         };
 
-        console.log('find: ' + module.name + ' ' + module.moduleName);
-        var styles = {
-            css: [],
-            js: []
-        };
-        //module.cssFiles.forEach(processCSS.bind(null, module.name, styles, true));
-        //if (styles.css.length) {
-        //    module.css = styles.css.join('\n');
-        //    module.cssJs = styles.js.join('\n');
-        //}
-
         module.dependencies.forEach(findModule);
         grunt.config('modules', grunt.config('modules').concat(module));
     }
@@ -138,8 +139,6 @@ module.exports = function (grunt) {
         grunt.file.expand('src/' + name + '/*.js')
         .map(grunt.file.read)
         .forEach(function (contents) {
-
-            //console.log('contents: ' + contents);
             //Strategy: find where module is declared,
             //and from there get everything inside the [] and split them by comma
             var moduleDeclIndex = contents.indexOf('angular.module(');
@@ -148,13 +147,9 @@ module.exports = function (grunt) {
             var dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
             console.log('moduleDeclIndex: ' + moduleDeclIndex + ' depArrayStart: ' + depArrayStart + ' depArrayEnd: ' + depArrayEnd);
             dependencies.split(',').forEach(function (dep) {
-                
                 if (dep.indexOf('bse.ui.') > -1) {
-                    
                     var depName = dep.trim().replace('bse.ui.', '').replace(/['"]/g, '');
-                    //console.log('dep: ' + depName);
                     if (deps.indexOf(depName) < 0) {
-                        console.log("name: " + depName);
                         deps.push(depName);
                         //Get dependencies for this new dependency
                         deps = deps.concat(dependenciesForModule(depName));
