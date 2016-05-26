@@ -1,8 +1,105 @@
-﻿.view-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-            height: 100%;
-            width: 100%;
-        }
+﻿.view {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}
+
+.view-container-central-box {
+    position: relative;
+    /* moved to mediaquery below
+                width: 1280px;*/
+    width: 100%;
+    height: 100%;
+    left: auto;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+    background: #DFF2F3; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#DFF2F3, #DCECF0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#DFF2F3, #DCECF0); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#DFF2F3, #DCECF0); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#DFF2F3, #DCECF0); /* Standard syntax (must be last) */
+}
+
+/*when the width of the screen is wider than 1280px*/
+@media (min-width: 1280px) {
+    .view-container-central-box {
+        width: 1280px;
+    }
+}
+
+.view-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+header.view-header {
+    min-height: 40px;
+    background-color: #FFF;
+}
+
+.view-header h1 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.view-header-navigation {
+    cursor: pointer;
+}
+
+.view-header-navigation > .navbar-brand {
+    height: 40px;
+    padding: 10px 10px;
+}
+
+section.view-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    /*margin: 10px 0 10px 0;*/
+    .workplace {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+footer.view-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+footer.view-footer.navbar {
+    margin-bottom: 0px;
+    border-radius: 0;
+}
+
+footer.view-footer.navbar.navbar-inverse {
+    background-color: #363E43;
+}
+/*default button within a footer nav-bar*/
+footer.view-footer.navbar .btn.btn-default {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+}
+
+footer.view-footer.navbar .btn.btn-default:hover {
+    background-color: rgba(234,234,234,0.1);
+}
+
+footer.view-footer.navbar .container {
+    margin-top: 6px;
+}

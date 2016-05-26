@@ -72,6 +72,8 @@
     <Content Include="bower.json" />
     <Content Include="src\application\_application.scss" />
     <Content Include="src\views\_views.scss" />
+    <Content Include="src\tiles\_tiles.scss" />
+    <Content Include="src\application\_slider.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

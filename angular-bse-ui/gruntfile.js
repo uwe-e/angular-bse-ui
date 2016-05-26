@@ -82,7 +82,7 @@ module.exports = function (grunt) {
     //register before and after test tasks so we've don't have to change cli
     //options on the google's CI server
     grunt.registerTask('create-js-from-html-templates', ['html2js']);
-    grunt.registerTask('create-js-and-cleanup', ['build', 'clean']);
+    grunt.registerTask('create-js-and-cleanup', ['build', 'sass', 'clean']);
 
     // Default task.
     grunt.registerTask('default', ['create-js-from-html-templates', 'create-js-and-cleanup']);
