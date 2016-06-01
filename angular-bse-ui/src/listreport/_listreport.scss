@@ -1,0 +1,16 @@
+﻿.list-report{
+    margin-bottom:auto;
+    border: none;
+    background-color: transparent;
+}
+.list-report .navbar-toolbar{
+    min-height: 40px;
+    padding-left: 20px;
+}
+.list-report .navbar-toolbar h2{
+    margin-top: 10px;
+}
+/*UI Grid overrides*/
+.list-report .ui-grid-top-panel{
+    background: #F7F7F7 none repeat scroll 0% 0%;
+}

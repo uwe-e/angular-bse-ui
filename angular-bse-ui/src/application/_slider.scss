@@ -55,7 +55,7 @@
 
     /*master detail*/
 
-.application-content .view-container div[ui-view].ng-hide-remove {
+/*.application-content .view-container div[ui-view].ng-hide-remove {
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
 }
@@ -63,7 +63,7 @@
     .application-content .view-container div[ui-view].ng-hide-remove.ng-hide-remove-active {
         -webkit-transform: translateX(0);
         transform: translateX(0);
-    }
+    }*/
 
 .application-content .view-container div[ui-view].ng-hide-add {
     -webkit-transform: translateX(0);

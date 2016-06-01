@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="gruntfile.js" />
+    <Content Include="src\listreport\listreports.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
     <Content Include="bower.json" />
@@ -74,6 +75,8 @@
     <Content Include="src\views\_views.scss" />
     <Content Include="src\tiles\_tiles.scss" />
     <Content Include="src\application\_slider.scss" />
+    <Content Include="template\listreport\toolbar.html" />
+    <Content Include="src\listreport\_listreport.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -89,6 +92,7 @@
     <Content Include="template\application\content.html" />
     <Content Include="template\icontabs\icontabset.html" />
     <Content Include="template\icontabs\icontab.html" />
+    <Content Include="template\listreport\listreport.html" />
     <Content Include="template\tiles\tilecontainer.html" />
     <Content Include="template\views\content.html" />
     <Content Include="template\views\footer.html" />
