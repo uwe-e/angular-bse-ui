@@ -1,0 +1,28 @@
+﻿.filterbar.panel {
+    border: none;
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin-bottom: auto;
+}
+
+.filterbar .nav .navbar-btn.btn-xs {
+    margin-top: 8px;
+}
+
+.filterbar label.control-label {
+    font-weight: normal;
+}
+
+.filterbar nav .btn.btn-default {
+    background-color: transparent;
+    border-color: transparent;
+    color: #00679E;
+}
+
+.filterbar nav .btn.btn-default:focus {
+    outline: 0;
+}
+
+.filterbar nav .btn.btn-default:hover {
+    background-color: #eeeeee;
+}
