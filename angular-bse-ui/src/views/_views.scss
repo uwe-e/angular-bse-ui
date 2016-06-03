@@ -103,3 +103,99 @@ footer.view-footer.navbar .btn.btn-default:hover {
 footer.view-footer.navbar .container {
     margin-top: 6px;
 }
+/*styles for the messagepanel*/
+.messagepanel {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    width: 100%;
+    display: none;
+}
+
+.messagepanel section {
+    text-align: center;
+}
+
+.messagepanel .glyphicon {
+    font-size: xx-large;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.messagepanel span.messagepannel-icon {
+    text-align: center;
+}
+
+.messagepanel span.messagepannel-maintext {
+    text-align: center;
+    color: #333;
+    font-size: larger;
+    display: block;
+}
+
+.messagepanel span.messagepannel-description {
+    text-align: center;
+    display: block;
+    color: rgba(0, 0, 0, 0.5);
+}
+/*styles for the over panel*/
+.overflowpanel.loading-information {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.loading-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 60px;
+    width: 60px;
+    margin: 0px auto;
+    -webkit-animation: spinner-rotation .6s infinite linear;
+    -moz-animation: spinner-rotation .6s infinite linear;
+    -o-animation: spinner-rotation .6s infinite linear;
+    animation: spinner-rotation .6s infinite linear;
+    border-left: 6px solid rgba(0,174,239,.15);
+    border-right: 6px solid rgba(0,174,239,.15);
+    border-bottom: 6px solid rgba(0,174,239,.15);
+    border-top: 6px solid rgba(0,174,239,.8);
+    border-radius: 100%;
+}
+
+@-webkit-keyframes spinner-rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
+@-moz-keyframes spinner-rotation {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(359deg);
+    }
+}
+
+@-o-keyframes spinner-rotation {
+    from {
+        -o-transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(359deg);
+    }
+}
+
+@keyframes spinner-rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}

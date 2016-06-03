@@ -101,6 +101,8 @@
     <Content Include="template\views\footer.html" />
     <Content Include="template\views\header.html" />
     <Content Include="template\views\headernavigation.html" />
+    <Content Include="template\views\messagepanel.html" />
+    <Content Include="template\views\overflowpanel.html" />
     <Content Include="template\views\view.html" />
     <Content Include="Web.config" />
   </ItemGroup>

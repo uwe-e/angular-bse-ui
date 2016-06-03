@@ -31,11 +31,11 @@
             var view = parents(grid, '.view-content');
             if (view) {
                 var offsetHeight = 10;
-                //if there is a filterbar on top of the content..
-                var smartBar = view.querySelector('.filterbar');
-                if (smartBar) {
-                    //gets the height of this filterbar
-                    offsetHeight = smartBar.offsetHeight;
+                //if there is a filter- or icontabbar on top of the content..
+                var toolBar = view.querySelector('.filterbar') || view.querySelector('.icon-tabbar');
+                if (toolBar) {
+                    //gets the height of this filter- or icontabbar
+                    offsetHeight += toolBar.offsetHeight;
                 }
                 //if the grid is located within a list-report panel..
                 var parent = parents(grid, '.list-report');
@@ -177,4 +177,79 @@
                 });
             }
         };
-    });
+    })
+    .directive('bseOverflowPanel', function () {
+        return {
+            transclude: true,
+            replace: true,
+            scope: {
+                isLoading: '=?'
+            },
+            templateUrl: function (element, attrs) {
+                return attrs.templateUrl || 'template/views/overflowpanel.html';
+            },
+            link: function (scope, element, attrs) {
+                scope.$watch('isLoading', function (value) {
+                    element.css('display', value ? 'block' : 'none');
+                });
+            }
+        }
+    })
+    .directive('bseMessagePanel', ['$document', function ($document) {
+        return {
+            transclude: true,
+            replace: true,
+            scope: {
+                text: '@',
+                icon: '@',
+                description: '@',
+                isOpen: '=?'
+            },
+            templateUrl: function (element, attrs) {
+                return attrs.templateUrl || 'template/views/messagepanel.html';
+            },
+            link: function (scope, element, attrs) {
+                var panelElement = angular.element(element[0].querySelector('.panel-body'));
+
+                var iconElement = createElement(attrs.icon, 'span');
+                if (iconElement) {
+                    iconElement.addClass('messagepannel-icon' + ' ' + attrs.icon);
+                    panelElement.append(iconElement);
+                }
+                var textElement = createTextNode(attrs.text || 'No matching items found.', 'span');
+                if (textElement) {
+                    textElement.addClass('messagepannel-maintext');
+                    panelElement.append(textElement);
+                }
+
+                var descriptionElement = createTextNode(attrs.description, 'span');
+                if (descriptionElement) {
+                    descriptionElement.addClass('messagepannel-description');
+                    panelElement.append(descriptionElement);
+                }
+
+                scope.$watch('isOpen', function (value) {
+                    element.css('display', value ? 'block' : 'none');
+                });
+
+                function createTextNode(value, tag) {
+                    var element = createElement(value, tag);
+                    if (element) {
+                        var node = $document[0].createTextNode(value);
+                        if (node) {
+                            element.append(node);
+                        }
+                    }
+                    return element;
+                };
+
+                function createElement(value, tag) {
+                    var element;
+                    if (angular.isDefined(value)) {
+                        element = angular.element($document[0].createElement(tag));
+                    }
+                    return element;
+                }
+            }
+        };
+    }]);
