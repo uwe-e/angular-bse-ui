@@ -1,21 +1,27 @@
-﻿angular.module('bse.ui.application', [])
-    .run(function ($state, $rootScope) {
+﻿angular.module('bse.ui.application', ['bse.ui.core'])
+    .run(function ($state, $rootScope, $bsecore) {
+        $state.directions = $bsecore.directions;
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
-            var historyBack;
-            if (!options.forward) {
-                historyBack = true;
+            var direction = options.direction;
+            if (!direction) {
+                direction = event.currentScope.$state.directions.backward;
             }
-            $rootScope.$emit('onViewChangeStart', historyBack);
+            $rootScope.$emit('onViewChangeStart', direction);
         });
     })
-    .controller('BseApplicationController', ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
-        $scope.$on('onViewChangeStart', function (event, historyBack) {
-            if (historyBack) {
+    .controller('BseApplicationController', ['$scope', '$element', '$attrs', '$bsecore', function ($scope, $element, $attrs, $bsecore) {
+        $scope.$on('onViewChangeStart', function (event, direction) {
+
+            $element.removeClass("slide-back");
+            $element.removeClass("slide-forward");
+
+            if (direction === $bsecore.directions.forward) {
+                $element.addClass("slide-forward");
+            }
+            else if (direction === $bsecore.directions.backward) {
                 $element.addClass("slide-back");
             }
-            else {
-                $element.removeClass("slide-back");
-            }
+
         });
     }])
     .directive('bseApplicationContent', function () {

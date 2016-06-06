@@ -12,22 +12,22 @@
     /*transition: transform .5s cubic-bezier(0.250, 0.250, 0.750, 0.750);*/
 }
 /* Slide Right */
-.application-content .view-container div[ui-view].ng-enter {
+.application-content.slide-forward .view-container div[ui-view].ng-enter {
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
 }
 
-    .application-content .view-container div[ui-view].ng-enter.ng-enter-active {
+    .application-content.slide-forward .view-container div[ui-view].ng-enter.ng-enter-active {
         -webkit-transform: translateX(0);
         transform: translateX(0);
     }
 
-.application-content .view-container div[ui-view].ng-leave {
+.application-content.slide-forward .view-container div[ui-view].ng-leave {
     -webkit-transform: translateX(0);
     transform: translateX(0);
 }
 
-    .application-content .view-container div[ui-view].ng-leave.ng-leave-active {
+    .application-content.slide-forward .view-container div[ui-view].ng-leave.ng-leave-active {
         -webkit-transform: translateX(-100%);
         transform: translateX(-100%);
     }
@@ -65,18 +65,15 @@
         transform: translateX(0);
     }*/
 
-.application-content .view-container div[ui-view].ng-hide-add {
+.application-content.slide-forward .view-container div[ui-view].ng-hide-add {
     -webkit-transform: translateX(0);
     transform: translateX(0);
 }
 
-    .application-content .view-container div[ui-view].ng-hide-add.ng-hide-add-active {
+    .application-content.slide-forward .view-container div[ui-view].ng-hide-add.ng-hide-add-active {
         -webkit-transform: translateX(-100%);
         transform: translateX(-100%);
     }
-
-    /*-------------------------*/
-
 
     .application-content.slide-back .view-container div[ui-view].ng-hide-remove {
     -webkit-transform: translateX(-100%);

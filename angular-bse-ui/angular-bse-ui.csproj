@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="gruntfile.js" />
+    <Content Include="src\core\core.js" />
     <Content Include="src\filterbar\filterbar.js" />
     <Content Include="src\listreport\listreports.js" />
     <Content Include="packages.config" />
