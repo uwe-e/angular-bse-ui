@@ -27,8 +27,8 @@
         * <div ui-grid="grid" class="grid" ui-grid-save-state ui-grid-auto-resize ui-grid-selection mch-grid-auto-resize></div>
         *
         */
-        this.resizeGrid = function (grid) {
-            var view = parents(grid, '.view-content');
+        this.resizeElement = function (element) {
+            var view = parents(element, '.view-content');
             if (view) {
                 var offsetHeight = 10;
                 //if there is a filter- or icontabbar on top of the content..
@@ -38,16 +38,16 @@
                     offsetHeight += toolBar.offsetHeight;
                 }
                 //if the grid is located within a list-report panel..
-                var parent = parents(grid, '.list-report');
+                var parent = parents(element, '.list-report');
                 if (parent) {
                     angular.forEach(parent.children, function (child) {
-                        if (child != grid[0]) {
+                        if (child != element[0]) {
                             //gets the height of other elements
                             offsetHeight += child.offsetHeight;
                         }
                     });
                 }
-                grid[0].style.height = view.clientHeight - offsetHeight + 'px';
+                element[0].style.height = view.clientHeight - offsetHeight + 'px';
             }
         };
         /*
@@ -55,7 +55,7 @@
         * If there's no ancestor element, the function returns undefined.
         */
         function parents(element, selector) {
-            if (element && element[0] !== document) {
+            if (element && element[0] && element[0] !== document) {
                 var el = element[0].querySelector(selector);
                 if (el) {
                     return el;
@@ -163,34 +163,46 @@
             }
         };
     })
-    .directive('bseGridAutoResize', function ($timeout, $window) {
+    .directive('bseAutoResize', function ($timeout, $window) {
         return {
             require: '^bseViewContent',
             restrict: 'A',
             link: function (scope, element, attrs, applicationCtrl) {
                 $timeout(function () {
-                    applicationCtrl.resizeGrid(element);
+                    applicationCtrl.resizeElement(element);
                 });
                 //When the window resizes, the grid resizing will be executed again.
                 angular.element($window).bind('resize', function () {
-                    applicationCtrl.resizeGrid(element);
+                    applicationCtrl.resizeElement(element);
                 });
             }
         };
     })
-    .directive('bseOverflowPanel', function () {
+    .directive('bseOverflowPanel', function ($document) {
         return {
             transclude: true,
             replace: true,
             scope: {
-                isLoading: '=?'
+                isLoading: '=?',
+                useWindowSize: '=?'
             },
             templateUrl: function (element, attrs) {
                 return attrs.templateUrl || 'template/views/overflowpanel.html';
             },
             link: function (scope, element, attrs) {
+
+                if (scope.$eval(attrs.useWindowSize)) {
+                    $document.find('body').append(element);
+                }
+
                 scope.$watch('isLoading', function (value) {
                     element.css('display', value ? 'block' : 'none');
+                });
+
+                scope.$on('$destroy', function () {
+                    if ($document[0].querySelector('body > div.overflowpanel')) {
+                        element.remove();
+                    }
                 });
             }
         }
