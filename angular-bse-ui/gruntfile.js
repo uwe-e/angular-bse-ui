@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         modules: [],//to be filled in by build task
-        dist: 'dist',
+        dist: '../dist',
         filename: 'bse.ui',
         meta: {
             modules: 'angular.module("bse.ui", [<%= srcModules %>]);',

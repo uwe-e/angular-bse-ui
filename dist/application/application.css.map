@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,sBAAuB;EACX,QAAQ,EAAE,MAAM;EAChB,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,KAAK;EACd,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI",
-"sources": ["../../angular-bse-ui/src/application/application.scss"],
-"names": [],
-"file": "application.css"
-}
