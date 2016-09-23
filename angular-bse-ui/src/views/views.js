@@ -32,7 +32,7 @@
             if (view) {
                 var offsetHeight = 10;
                 //if there is a filter- or icontabbar on top of the content..
-                var toolBar = view.querySelector('.filterbar') || view.querySelector('.icon-tabbar');
+                var toolBar = view.querySelector('.filterbar') || view.querySelector('.icon-tabbar') || view.querySelector('.view-content-toolbar');
                 if (toolBar) {
                     //gets the height of this filter- or icontabbar
                     offsetHeight += toolBar.offsetHeight;

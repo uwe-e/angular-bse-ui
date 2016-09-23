@@ -63,7 +63,7 @@
             return $delegate;
         });
     })
-    .controller('BseApplicationController', ['$scope', '$element', '$attrs', '$bsecore', function ($scope, $element, $attrs, $bsecore) {
+    .controller('BseApplicationController', ['$scope', '$element', '$attrs', '$bsecore', '$timeout', function ($scope, $element, $attrs, $bsecore, $timeout) {
         $scope.$on('onViewChangeStart', function (event, direction) {
 
             $element.removeClass("slide-back");
@@ -75,6 +75,19 @@
             else if (direction === $bsecore.directions.backward) {
                 $element.addClass("slide-back");
             }
+
+            //$timeout(function () {
+            //    $element.removeClass("slide-back");
+            //    $element.removeClass("slide-forward");
+            //    $timeout(function () {
+            //        if (direction === $bsecore.directions.forward) {
+            //            $element.addClass("slide-forward");
+            //        }
+            //        else if (direction === $bsecore.directions.backward) {
+            //            $element.addClass("slide-back");
+            //        }
+            //    });
+            //});
 
         });
     }])

@@ -1,4 +1,10 @@
-﻿/* basic styling for entering and leaving */
+﻿/*Preventing flicker before an animation starts https://docs.angularjs.org/guide/animations*/
+/*.application-content .view-container div[ui-view].ng-enter-prepare,
+ .application-content .view-container div[ui-view].ng-leave-prepare{
+    left: 0;
+    right: 0;
+}*/
+/* basic styling for entering and leaving */
 /* left and right added to ensure full width */
 .application-content .view-container div[ui-view].ng-enter,
 .application-content .view-container div[ui-view].ng-leave,

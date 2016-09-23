@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="gruntfile.js" />
+    <Content Include="src\charts\charts.js" />
     <Content Include="src\core\core.js" />
     <Content Include="src\filterbar\filterbar.js" />
     <Content Include="src\listreport\listreports.js" />
@@ -77,10 +78,13 @@
     <Content Include="src\views\_views.scss" />
     <Content Include="src\tiles\_tiles.scss" />
     <Content Include="src\application\_slider.scss" />
+    <Content Include="template\charts\chartarea.html" />
+    <Content Include="template\charts\charttoolbar.html" />
     <Content Include="template\filterbar\filterbar.html" />
     <Content Include="template\listreport\toolbar.html" />
     <Content Include="src\listreport\_listreport.scss" />
     <Content Include="src\filterbar\_filterbar.scss" />
+    <Content Include="src\charts\_charts.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

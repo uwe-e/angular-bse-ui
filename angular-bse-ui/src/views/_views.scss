@@ -106,7 +106,7 @@ footer.view-footer.navbar .container {
 /*styles for the messagepanel*/
 .messagepanel {
     position: absolute;
-    top: 80px;
+    top: 180px;
     bottom: 0;
     width: 100%;
     display: none;
@@ -116,7 +116,7 @@ footer.view-footer.navbar .container {
     text-align: center;
 }
 
-.messagepanel .glyphicon {
+.messagepanel .glyphicon, .messagepanel .fa {
     font-size: xx-large;
     color: rgba(0, 0, 0, 0.3);
 }
