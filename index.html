@@ -6,19 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="node_modules/angular-ui-grid/ui-grid.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/app.css">
+</head>
+<body>
+    <section class="shellPage">
+        <hr class="mchshellbrand" />
+        <header class="shellbar navbar navbar-default">
+            <div class="container-fluid nav-home">
+                <ul class="nav navbar-nav nav-home">
+                    <li><a ui-sref=".home"><span class="glyphicon glyphicon-home"></span></a></li>
+                </ul>
+                <p class="navbar-text">bse.ui Demo</p>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li uib-dropdown>
+                            <a href="#" class="nav navbar-nav dropdown-toggle" uib-dropdown-toggle>
+                                <span class="glyphicon glyphicon-user"></span>
+                                Horst Schimanski
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" uib-dropdown-menu>
+                                <li>
+                                    Logout
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <bse-application-content>
+        </bse-application-content>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="node_modules/ui-router-extras/release/ct-ui-router-extras.min.js"></script>
     <script src="node_modules/angular-ui-grid/ui-grid.min.js"></script>
     <script src="scripts/bse.ui-tpls-0.0.1.js"></script>
     <script src="scripts/app.js"></script>
-</head>
-<body>
-    <section class="shellPage">
-        <hr class="mchshellbrand" />
-    </section>
+
 </body>
 </html>

@@ -1,0 +1,22 @@
+html,
+        body {
+            height: 100%;
+            background-color: #FFF;
+            /* The html and body elements cannot have any padding or margin. */
+        }
+.shellPage {
+    min-height: 100%;
+    height: 100%;
+}
+
+.mchshellbrand {
+    background-color: #009de0;
+    position: absolute;
+    top: 0;
+    height: 4px;
+    left: 0;
+    right: 0;
+    border: medium none;
+    margin: 0;
+    z-index: 7;
+}

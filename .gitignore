@@ -3,3 +3,14 @@
 ################################################################################
 
 /angular-bse-ui/node_modules/grunt
+/angular-bse-ui/node_modules/grunt-contrib-clean
+/.vs/angular-bse-ui/v14/.suo
+/angular-bse-ui/node_modules/grunt-contrib-concat
+/angular-bse-ui/node_modules/grunt-contrib-concat
+/angular-bse-ui/node_modules/grunt-contrib-uglify
+/angular-bse-ui/node_modules/grunt-contrib-uglify
+/angular-bse-ui/node_modules/grunt-html2js
+/angular-bse-ui/node_modules/grunt-sass
+/angular-bse-ui/node_modules/load-grunt-tasks
+/angular-bse-ui/node_modules/grunt-sass-globbing
+/angular-bse-ui/node_modules/grunt-contrib-watch
