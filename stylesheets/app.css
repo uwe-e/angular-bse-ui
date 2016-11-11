@@ -20,3 +20,33 @@ html,
     margin: 0;
     z-index: 7;
 }
+header.shellbar {
+    top: 4px;
+    border-width: 0 0 1px;
+}
+.shellbar .glyphicon {
+    font-size: 18px;
+}
+
+.application-content {
+    overflow: hidden;
+    position: absolute;
+    /*top: 0;*/
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 54px;
+    background: #2da9b1; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#2da9b1, #1a4c7d); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#2da9b1, #1a4c7d); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#2da9b1, #1a4c7d); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#2da9b1, #1a4c7d); /* Standard syntax (must be last) */
+}
+
+.application-container {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+}

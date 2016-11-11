@@ -1,0 +1,23 @@
+<bse-view-header title="Users">
+</bse-view-header>
+<bse-view-content>
+    <bse-filter-bar textgo="Go" texthide="Hide Filter Bar" textshow="Show Filter Bar" collapse="false">
+        <div class="panel-body">
+            <div class="form-group form-group-sm col-md-2">
+                <label class="control-label" for="name">Name:</label>
+                <input name="name" type="text" ng-model="search.name" placeholder="Name" class="form-control" />
+            </div>
+            <div class="form-group form-group-sm col-md-2">
+                <label class="control-label" for="statesbox">States:</label>
+                <select name="statesbox" class="form-control" ng-model="search.AddressFilterId" ng-options="obj.address.state group by obj.address.state for obj in users"></select>
+            </div>
+        </div>
+    </bse-filter-bar>
+    <bse-list-report>
+        <bse-list-report-toolbar title="Records ({{recordsCount}})"></bse-list-report-toolbar>
+        <div ui-grid="grid" class="gridpanel" ui-grid-save-state ui-grid-auto-resize ui-grid-selection bse-auto-resize>
+            <bse-overflow-panel is-Loading="isLoading"></bse-overflow-panel>
+            <bse-message-panel icon="glyphicon glyphicon-filter" text="no records found." description="Please check your filters" is-open="!isLoading && !recordsCount"></bse-message-panel>
+        </div>
+    </bse-list-report>
+</bse-view-content>
