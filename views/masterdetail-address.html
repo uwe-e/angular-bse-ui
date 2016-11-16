@@ -2,6 +2,77 @@
     <bse-view-header-navigation ng-click="gotoWorklist()"></bse-view-header-navigation>
 </bse-view-header>
 <bse-view-content>
+    <h2>User Profile</h2>
+
+    <div class="form-horizontal">
+        <div class="well well-sm">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="userid">Id:</label><div class="col-sm-6">
+                        <input name="userid" class="form-control" type="text" ng-model="user.id" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="name">*Name:</label><div class="col-sm-6">
+                        <input name="name" class="form-control" type="text" ng-model="user.name" ng-required="true" ng-maxlength="40">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="age">Age:</label><div class="col-sm-6">
+                        <input name="age" class="form-control" type="text" ng-model="user.age">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="gender">Gender:</label><div class="col-sm-6">
+                        <select name="gender" ng-model="user.gender" class="form-control" ng-options="obj.gender as obj.gender for obj in users | groupBy: 'gender' | orderBy: 'gender'"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="email">Email:</label><div class="col-sm-6">
+                        <input name="email" class="form-control" type="text" ng-model="user.email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="company">*Company:</label><div class="col-sm-6">
+                        <input name="company" class="form-control" type="text" ng-model="user.company" ng-required="true" ng-maxlength="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="zip">Zip:</label><div class="col-sm-6">
+                        <input name="zip" class="form-control" type="text" ng-model="user.address.zip" ng-maxlength="60">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="city">*City:</label><div class="col-sm-6">
+                        <input name="city" class="form-control" type="text" ng-model="user.address.city" ng-required="true" ng-maxlength="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="street">Street:</label><div class="col-sm-6">
+                        <input name="street" class="form-control" type="text" ng-model="user.address.street" ng-maxlength="60">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="states">State:</label><div class="col-sm-6">
+                        <select name="states" ng-model="user.address.state" class="form-control" ng-options="obj.address.state as obj.address.state for obj in users | groupBy: 'address.state' | orderBy: 'address.state'"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label required-marker" for="about">About:</label><div class="col-sm-6">
+                        <textarea name="about" class="form-control" rows="5" ng-model="user.about"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 </bse-view-content>
 <bse-view-footer>
+    <div class="navbar-right">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary" data-ng-click="saveProfile()">Save and Back</button>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" ng-click="gotoWorklist()">Cancel and Back</button>
+        </div>
+    </div>
 </bse-view-footer>

@@ -32,7 +32,7 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
     });
 }).factory('dataFactory', function ($http) {
     return {
-        getGridData: function () {
+        getData: function () {
             return $http({ method: 'get', url: "https://cdn.rawgit.com/angular-ui/ui-grid.info/gh-pages/data/500_complex.json" });
         }
     }
@@ -98,11 +98,11 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
 
         $scope.users = [];
         $scope.grid.data = [];
-        loadGridData();
+        loadData();
 
-        function loadGridData() {
+        function loadData() {
             $scope.isLoading = true;
-            dataFactory.getGridData().then(function (response) {
+            dataFactory.getData().then(function (response) {
                 $scope.recordsCount = response.data.length;
                 return response.data;
 
@@ -134,8 +134,30 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
         }
 
     })
-    .controller('masterDetailAddressController', function ($scope, $http, $state, dataFactory) {
+    .controller('masterDetailAddressController', function ($scope, $http, $state, $stateParams, $filter, dataFactory) {
+        $scope.userId = parseInt($stateParams.userid, 0);
         $scope.viewtitle = "Address View";
+
+
+        loadData();
+
+        function loadData() {
+            $scope.isLoading = true;
+            dataFactory.getData().then(function (response) {
+                $scope.recordsCount = response.data.length;
+                $scope.users = angular.fromJson(response.data);
+                //$scope.users = users;
+                return $filter('filter')($scope.users, { id: $scope.userId }, true)[0];
+            }).then(function (user) {
+                $scope.user = user;
+            }).then(function () {
+                $scope.isLoading = false;
+            });
+        }
+
+        $scope.saveProfile = function () {
+            $scope.gotoWorklist();
+        }
 
         $scope.gotoWorklist = function () {
             $state.goBack('masterdetail.worklist');
