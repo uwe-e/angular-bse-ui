@@ -50,3 +50,5 @@ header.shellbar {
     height: 100%;
     width: 100%;
 }
+
+.ui-grid-filter-container { display: none!important; }

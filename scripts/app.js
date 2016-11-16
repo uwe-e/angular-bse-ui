@@ -21,6 +21,14 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
                 controller: 'masterDetailWorklistController'
             }
         }
+    }).state('masterdetail.address', {
+        url: '/address/:userid',
+        views: {
+            'address': {
+                templateUrl: 'views/masterdetail-address.html',
+                controller: 'masterDetailAddressController'
+            }
+        }
     });
 }).factory('dataFactory', function ($http) {
     return {
@@ -28,60 +36,111 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
             return $http({ method: 'get', url: "https://cdn.rawgit.com/angular-ui/ui-grid.info/gh-pages/data/500_complex.json" });
         }
     }
-}).controller('homeController', function ($scope, $http, $log, $timeout, $state) {
+})
+    .filter('groupBy', ['$filter', function ($filter) {
+        function getValue(element, propertyArray) {
+            var value = element;
+            angular.forEach(propertyArray, function (property) {
+                value = value[property];
+            });
+            return value;
+        }
 
-}).controller('masterDetailWorklistController', function ($scope, $http, $log, $timeout, $state, $filter, dataFactory) {
-    $scope.recordsCount;
-    $scope.isLoading = false;
+        function parseString(input) {
+            return input.split(".");
+        }
 
-    $scope.grid = {
-        enableRowSelection: true,
-        enableRowHeaderSelection: false,
-        multiSelect: false,
-        rowTemplate: '<div ng-click="grid.appScope.onRowSelected(row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.uid" class="ui-grid-cell" ng-class="col.colIndex()" ui-grid-cell></div>'
-    };
-    $scope.grid.columnDefs = [
-          { name: 'id', width: 50 },
-          { name: 'name', width: 200, pinnedLeft: true },
-          //{ name: 'age', width: 100, pinnedRight: true },
-          { name: 'address.street', width: 150 },
-          { name: 'address.city', width: 150 },
-          { name: 'address.state', width: 150 },
-          { name: 'address.zip', width: 50 },
-          { name: 'company', width: 150 },
-          { name: 'email', width: 200 },
-          { name: 'phone', width: 150 },
-          //{ name: 'about', width: 300 },
-    ];
-    $scope.users = [];
-    $scope.grid.data = [];
-    loadGridData();
+        return function (collection, propertyString, target) {
+            var output = [], keys = [];
+            var properties = parseString(propertyString);
 
-    function loadGridData() {
-        $scope.isLoading = true;
-        dataFactory.getGridData().then(function (response) {
-            $scope.recordsCount = response.data.length;
-            $scope.grid.data = response.data;
-            return response.data;
+            $filter('filter')(collection, function (item) {
+                var key = getValue(item, properties);
+                if (keys.indexOf(key) === -1) {
+                    keys.push(key);
+                    output.push(item);
+                }
+            });
+            return output;
+        }
+    }])
+    .controller('homeController', function ($scope, $http, $log, $timeout, $state) {
 
-        }).then(function (users) {
-            $scope.users = users;
-            //var t = $filter('address.state')($scope.users, "Alaska");
-            $scope.grid.data = users;
-        }).then(function () {
-            $scope.isLoading = false;
-        });
-    }
+    }).controller('masterDetailWorklistController', function ($scope, $http, $log, $timeout, $state, $filter, uiGridConstants, dataFactory) {
+        $scope.search = {};
+        $scope.recordsCount;
+        $scope.isLoading = false;
 
-    
-    //$scope.groupBy = function (player) {
-    //    var teamIsNew = indexedTeams.indexOf(player.team) == -1;
-    //    if (teamIsNew) {
-    //        indexedTeams.push(player.team);
-    //    }
-    //}
+        $scope.grid = {
+            enableRowSelection: true,
+            enableRowHeaderSelection: false,
+            enableFiltering: true,
+            //useExternalFiltering: true,
+            multiSelect: false,
+            rowTemplate: '<div ng-click="grid.appScope.onRowSelected(row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.uid" class="ui-grid-cell" ng-class="col.colIndex()" ui-grid-cell></div>',
+            columnDefs: [
+                      { field: 'id' },
+                      //{ field: 'name' },
+            //{ field: 'address.state'  }
+                      { field: 'name', name: 'name', width: 200, pinnedLeft: true },
+                      { name: 'address.street', width: 150 },
+                      { name: 'address.city', width: 150 },
+                      { field: 'address.state', name: 'address.state', width: 150 },
+                      { name: 'address.zip', width: 50 },
+                      { name: 'company', width: 150 },
+                      { name: 'email', width: 200 },
+                      { name: 'phone', width: 150 },
+            ],
+            onRegisterApi: function (gridApi) {
+                $scope.gridApi = gridApi;
+            }
+        };
 
-});
+        $scope.users = [];
+        $scope.grid.data = [];
+        loadGridData();
+
+        function loadGridData() {
+            $scope.isLoading = true;
+            dataFactory.getGridData().then(function (response) {
+                $scope.recordsCount = response.data.length;
+                return response.data;
+
+            }).then(function (users) {
+                $scope.users = users;
+                $scope.grid.data = users;
+            }).then(function () {
+                $scope.isLoading = false;
+            });
+        }
+
+        $scope.executeSearch = function (search) {
+            console.log($scope.gridApi.grid.columns[2])
+            //$scope.gridApi.grid.columns[4].filters[0] = {
+            //    condition: uiGridConstants.filter.EXACT,
+            //    term: search.AddressFilterId
+            //}
+            $scope.gridApi.grid.columns[4].filters[0].term = search.AddressFilterId;
+            //$scope.gridApi.grid.columns[0].filters[0] = {
+            //    //condition: uiGridConstants.filter.Exact,
+            //    term: 3
+            //}
+
+            $scope.gridApi.grid.refresh();
+        };
+
+        $scope.onRowSelected = function (row) {
+            $state.go('masterdetail.address', { userid: row.entity.id });
+        }
+
+    })
+    .controller('masterDetailAddressController', function ($scope, $http, $state, dataFactory) {
+        $scope.viewtitle = "Address View";
+
+        $scope.gotoWorklist = function () {
+            $state.goBack('masterdetail.worklist');
+        }
+    });
 
 angular.element(document).ready(function () {
     angular.bootstrap(document, ['myApp']);
