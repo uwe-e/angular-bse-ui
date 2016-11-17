@@ -861,10 +861,10 @@ angular.module("template/filterbar/filterbar.html", []).run(["$templateCache", f
       "    <div>\n" +
       "        <nav class=\"navbar\">\n" +
       "            <div class=\"container\">\n" +
-      "                <ul class=\"nav navbar-nav navbar-right\">\n" +
-      "                    <li><button type=\"button\" class=\"btn btn-default navbar-btn btn-collapse-filterbar\">{{texthide}}</button></li>\n" +
-      "                    <li><button type=\"button\" class=\"btn btn-primary navbar-btn btn-execute-filter\">{{textgo}}</button></li>\n" +
-      "                </ul>\n" +
+      "                <div class=\"btn-group btn-group-right\">\n" +
+      "                    <button type=\"button\" class=\"btn btn-default navbar-btn btn-collapse-filterbar\">{{texthide}}</button>\n" +
+      "                    <button type=\"button\" class=\"btn btn-primary navbar-btn btn-execute-filter\">{{textgo}}</button>\n" +
+      "                </div>\n" +
       "            </div>\n" +
       "        </nav>\n" +
       "    </div>\n" +
