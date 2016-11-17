@@ -63,11 +63,15 @@ header.shellbar {
     color: #777;
     position: absolute;
     top: 4px;
-    height: 44px;
+    height: 50px;
     left: 0;
     right: 0;
     z-index: 3;
     overflow: hidden;
+}
+
+.shellbar .glyphicon, .shellbar a{
+    color: #777;
 }
 
 .shellbar-content {
@@ -77,15 +81,11 @@ header.shellbar {
     bottom: 0;
     left: 0;
     right: 0;
+    display: flex;
 }
-
-/*.shellbar .navbar-nav{
-    float: left;
-}*/
 
 .shellbar-header-left, .shellbar-header-center, .shellbar-header-right {
     display: inline-block;
-    /*position: absolute;*/
     top: 0;
     bottom: 0;
     overflow: hidden;
@@ -95,12 +95,10 @@ header.shellbar {
     left: 0;
     max-width: 265px;
     white-space: nowrap;
-    width: 100px;
 }
 
 .shellbar-header-center{
-    /*text-align: center;*/
-    /*width: 100%;*/
+    flex-grow: 1;
 }
 
 .shellbar-header-right {
@@ -110,15 +108,30 @@ header.shellbar {
     z-index: 1;
 }
 
+.shellbar-header-item {
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    line-height: 44px;
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}
 
-.shellbar-header-item{
-    width: 44px;
+a.shellbar-header-item:hover {
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .header-navbar-title {
     font-size: 2.0rem;
     font-weight: bolder;
-    float: left;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    width: 100%;
+    text-align: center;
+    line-height: 39px
+}
+
+.action-btn-icon{
+    padding-left: 9px;
+    padding-right: 9px;
 }

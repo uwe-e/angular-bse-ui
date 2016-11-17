@@ -14,20 +14,20 @@
         <hr class="mchshellbrand" />
         <header class="shellbar navbar-default">
             <div class="shellbar-content">
-                <div class="shellbar-header-left nav-home" style="background-color: antiquewhite">
-                    <div class="shellbar-header-container"><a ui-sref=".home" class="shellbar-header-item"><span class="glyphicon glyphicon-home">123</span></a></div>
+                <div class="shellbar-header-left nav-home">
+                    <div class="shellbar-header-container"><a ui-sref=".home" class="shellbar-header-item"><span class="action-btn-icon glyphicon glyphicon-home"></span></a></div>
                 </div>
-                <div class="shellbar-header-center" style="background-color: aquamarine">
+                <div class="shellbar-header-center">
                     <div class="header-navbar-title">bse.ui Demo</div>
                 </div>
-                <div class="shellbar-header-right" style="background-color: azure">
-                    <div uib-dropdown>
-                        <a href="#" class="nav navbar-nav dropdown-toggle" uib-dropdown-toggle>
-                            <span class="glyphicon glyphicon-user"></span>
-                            Horst Schimanski
+                <div class="shellbar-header-right">
+                    <div uib-dropdown dropdown-append-to-body>
+                        <a class="shellbar-header-item dropdown-toggle" uib-dropdown-toggle>
+                            <span class="action-btn-icon glyphicon glyphicon-user"></span>
+                            <span class="action-btn-text hidden-xs">Horst Schimanski</span>
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" uib-dropdown-menu>
+                        <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
                             <li>
                                 Logout
                             </li>
