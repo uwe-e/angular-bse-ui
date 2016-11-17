@@ -11,6 +11,236 @@
   margin-bottom: 0px;
   border-radius: 0; }
 
+/*Preventing flicker before an animation starts https://docs.angularjs.org/guide/animations*/
+/*.application-content .view-container div[ui-view].ng-enter-prepare,
+ .application-content .view-container div[ui-view].ng-leave-prepare{
+    left: 0;
+    right: 0;
+}*/
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+.application-content .view-container div[ui-view].ng-enter,
+.application-content .view-container div[ui-view].ng-leave,
+.application-content .view-container div[ui-view].ng-hide-add,
+.application-content .view-container div[ui-view].ng-hide-remove {
+  position: absolute;
+  right: 0;
+  left: 0;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  /*transition: transform .5s cubic-bezier(0.250, 0.250, 0.750, 0.750);*/ }
+
+/* Slide Right */
+.application-content.slide-forward .view-container div[ui-view].ng-enter {
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%); }
+
+.application-content.slide-forward .view-container div[ui-view].ng-enter.ng-enter-active {
+  -webkit-transform: translateX(0);
+  transform: translateX(0); }
+
+.application-content.slide-forward .view-container div[ui-view].ng-leave {
+  -webkit-transform: translateX(0);
+  transform: translateX(0); }
+
+.application-content.slide-forward .view-container div[ui-view].ng-leave.ng-leave-active {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%); }
+
+/* Slide Left */
+.application-content.slide-back .view-container div[ui-view].ng-enter {
+  -webkit-transform: translateX(0);
+  transform: translateX(-100%); }
+
+.application-content.slide-back .view-container div[ui-view].ng-enter.ng-enter-active {
+  -webkit-transform: translateX(-100px);
+  transform: translateX(0); }
+
+.application-content.slide-back .view-container div[ui-view].ng-leave {
+  -webkit-transform: translateX(-100px);
+  transform: translateX(0); }
+
+.application-content.slide-back .view-container div[ui-view].ng-leave.ng-leave-active {
+  -webkit-transform: translateX(0);
+  transform: translateX(100%); }
+
+/*master detail*/
+/*.application-content .view-container div[ui-view].ng-hide-remove {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+    .application-content .view-container div[ui-view].ng-hide-remove.ng-hide-remove-active {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }*/
+.application-content.slide-forward .view-container div[ui-view].ng-hide-add {
+  -webkit-transform: translateX(0);
+  transform: translateX(0); }
+
+.application-content.slide-forward .view-container div[ui-view].ng-hide-add.ng-hide-add-active {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%); }
+
+.application-content.slide-back .view-container div[ui-view].ng-hide-remove {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%); }
+
+.application-content.slide-back .view-container div[ui-view].ng-hide-remove.ng-hide-remove-active {
+  -webkit-transform: translateX(0);
+  transform: translateX(0); }
+
+.application-content.slide-back .view-container div[ui-view].ng-hide-add {
+  -webkit-transform: translateX(0);
+  transform: translateX(0); }
+
+.application-content.slide-back .view-container div[ui-view].ng-hide-add.ng-hide-add-active {
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%); }
+
+.chart-toolbar {
+  background-color: #fff;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  border-right-color: #fff; }
+
+.filterbar.panel {
+  border: none;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-bottom: auto; }
+
+.filterbar .nav .navbar-btn.btn-xs {
+  margin-top: 8px; }
+
+.filterbar label.control-label {
+  font-weight: normal; }
+
+.filterbar nav .btn.btn-default {
+  background-color: transparent;
+  border-color: transparent;
+  color: #00679E; }
+
+.filterbar nav .btn.btn-default:focus {
+  outline: 0; }
+
+.filterbar nav .btn.btn-default:hover {
+  background-color: #eeeeee; }
+
+/*aligns the expand/collapse buttons to the right*/
+.filterbar .btn-group-right {
+  float: right !important; }
+
+.list-report {
+  margin-bottom: auto;
+  border: none;
+  background-color: transparent; }
+
+.list-report .navbar-toolbar {
+  min-height: 40px; }
+
+.list-report .navbar-toolbar h2 {
+  margin-top: 10px; }
+
+/*UI Grid overrides*/
+.list-report .ui-grid-top-panel {
+  background: #F7F7F7 none repeat scroll 0% 0%; }
+
+/*contains classes for miscellaneous needs*/
+.shellbar {
+  color: #777;
+  position: absolute;
+  top: 4px;
+  height: 50px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  overflow: hidden; }
+
+.shellbar .glyphicon, .shellbar a {
+  color: #777; }
+
+.shellbar-content {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex; }
+
+.shellbar-header-left {
+  left: 0;
+  max-width: 265px;
+  white-space: nowrap; }
+
+.shellbar-header-center {
+  flex-grow: 1; }
+
+.shellbar-header-right {
+  right: 0;
+  max-width: 25.5rem;
+  white-space: nowrap;
+  z-index: 1; }
+
+.shellbar-header-item {
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  line-height: 50px;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%; }
+
+a.shellbar-header-item:hover {
+  cursor: pointer;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.1); }
+
+.header-navbar-title {
+  font-size: 2.0rem;
+  font-weight: bolder;
+  width: 100%;
+  text-align: center;
+  line-height: 50px; }
+
+.action-btn-icon {
+  padding-left: 9px;
+  padding-right: 9px; }
+
+.action-btn-ext {
+  margin-right: 4px; }
+
+.tile-container .tile-container-header h2 {
+  color: #fff;
+  font-size: 24px; }
+
+.tile-group {
+  padding: 15px; }
+
+.tile {
+  background-color: #fff;
+  border-radius: 4px;
+  box-sizing: border-box; }
+  .tile .tile-inner {
+    cursor: pointer;
+    position: relative;
+    min-height: 120px; }
+  .tile .tile-inner:hover {
+    box-shadow: 0px 0px 0px 2px #FFF;
+    border-radius: 5px; }
+  .tile h3 {
+    font-size: 20px;
+    color: #333;
+    text-overflow: ellipsis;
+    margin-bottom: 0px; }
+  .tile .tile-base .glyphicon {
+    position: absolute;
+    bottom: 1px;
+    top: auto;
+    font-size: 26px;
+    color: #007CC0; }
+
 .view {
   height: 100%;
   width: 100%;
@@ -109,7 +339,7 @@ footer.view-footer.navbar .container {
 /*styles for the messagepanel*/
 .messagepanel {
   position: absolute;
-  top: 80px;
+  top: 180px;
   bottom: 0;
   width: 100%;
   display: none; }
@@ -117,7 +347,7 @@ footer.view-footer.navbar .container {
 .messagepanel section {
   text-align: center; }
 
-.messagepanel .glyphicon {
+.messagepanel .glyphicon, .messagepanel .fa {
   font-size: xx-large;
   color: rgba(0, 0, 0, 0.3); }
 

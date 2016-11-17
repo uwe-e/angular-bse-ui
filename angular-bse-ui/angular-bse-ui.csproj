@@ -85,6 +85,7 @@
     <Content Include="src\listreport\_listreport.scss" />
     <Content Include="src\filterbar\_filterbar.scss" />
     <Content Include="src\charts\_charts.scss" />
+    <Content Include="src\shell\_shell.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

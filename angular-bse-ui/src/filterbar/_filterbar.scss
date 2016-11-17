@@ -26,3 +26,7 @@
 .filterbar nav .btn.btn-default:hover {
     background-color: #eeeeee;
 }
+/*aligns the expand/collapse buttons to the right*/
+.filterbar .btn-group-right{
+    float: right!important;
+}
