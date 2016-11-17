@@ -12,27 +12,27 @@
 <body>
     <section class="shellPage">
         <hr class="mchshellbrand" />
-        <header class="shellbar navbar navbar-default">
-            <div class="container-fluid nav-home">
-                <ul class="nav navbar-nav nav-home">
-                    <li><a ui-sref=".home"><span class="glyphicon glyphicon-home"></span></a></li>
-                </ul>
-                <p class="navbar-text">bse.ui Demo</p>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li uib-dropdown>
-                            <a href="#" class="nav navbar-nav dropdown-toggle" uib-dropdown-toggle>
-                                <span class="glyphicon glyphicon-user"></span>
-                                Horst Schimanski
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" uib-dropdown-menu>
-                                <li>
-                                    Logout
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+        <header class="shellbar navbar-default">
+            <div class="shellbar-content">
+                <div class="shellbar-header-left nav-home" style="background-color: antiquewhite">
+                    <div class="shellbar-header-container"><a ui-sref=".home" class="shellbar-header-item"><span class="glyphicon glyphicon-home">123</span></a></div>
+                </div>
+                <div class="shellbar-header-center" style="background-color: aquamarine">
+                    <div class="header-navbar-title">bse.ui Demo</div>
+                </div>
+                <div class="shellbar-header-right" style="background-color: azure">
+                    <div uib-dropdown>
+                        <a href="#" class="nav navbar-nav dropdown-toggle" uib-dropdown-toggle>
+                            <span class="glyphicon glyphicon-user"></span>
+                            Horst Schimanski
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" uib-dropdown-menu>
+                            <li>
+                                Logout
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </header>

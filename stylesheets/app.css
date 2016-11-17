@@ -52,3 +52,73 @@ header.shellbar {
 }
 
 .ui-grid-filter-container { display: none!important; }
+
+/*@media (min-width: 768px) {
+    .shellbar .nav-home .navbar-header {
+        float: left;
+    }
+}*/
+
+.shellbar {
+    color: #777;
+    position: absolute;
+    top: 4px;
+    height: 44px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.shellbar-content {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/*.shellbar .navbar-nav{
+    float: left;
+}*/
+
+.shellbar-header-left, .shellbar-header-center, .shellbar-header-right {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.shellbar-header-left {
+    left: 0;
+    max-width: 265px;
+    white-space: nowrap;
+    width: 100px;
+}
+
+.shellbar-header-center{
+    /*text-align: center;*/
+    width: 100%;
+}
+
+.shellbar-header-right {
+    right: 0;
+    max-width: 25.5rem;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+
+.shellbar-header-item{
+    width: 44px;
+}
+
+.header-navbar-title {
+    font-size: 2.0rem;
+    font-weight: bolder;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

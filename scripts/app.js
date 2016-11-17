@@ -80,8 +80,6 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
             rowTemplate: '<div ng-click="grid.appScope.onRowSelected(row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.uid" class="ui-grid-cell" ng-class="col.colIndex()" ui-grid-cell></div>',
             columnDefs: [
                       { field: 'id' },
-                      //{ field: 'name' },
-            //{ field: 'address.state'  }
                       { field: 'name', name: 'name', width: 200, pinnedLeft: true },
                       { name: 'address.street', width: 150 },
                       { name: 'address.city', width: 150 },
@@ -136,24 +134,8 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
     })
     .controller('masterDetailAddressController', function ($scope, $http, $state, $stateParams, $filter, dataFactory) {
         $scope.userId = parseInt($stateParams.userid, 0);
-        $scope.viewtitle = "Address View";
-
 
         loadData();
-
-        function loadData() {
-            $scope.isLoading = true;
-            dataFactory.getData().then(function (response) {
-                $scope.recordsCount = response.data.length;
-                $scope.users = angular.fromJson(response.data);
-                //$scope.users = users;
-                return $filter('filter')($scope.users, { id: $scope.userId }, true)[0];
-            }).then(function (user) {
-                $scope.user = user;
-            }).then(function () {
-                $scope.isLoading = false;
-            });
-        }
 
         $scope.saveProfile = function () {
             $scope.gotoWorklist();
@@ -161,6 +143,18 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
 
         $scope.gotoWorklist = function () {
             $state.goBack('masterdetail.worklist');
+        }
+
+        function loadData() {
+            $scope.isLoading = true;
+            dataFactory.getData().then(function (response) {
+                $scope.users = angular.fromJson(response.data);
+                return $filter('filter')($scope.users, { id: $scope.userId }, true)[0];
+            }).then(function (user) {
+                $scope.user = user;
+            }).then(function () {
+                $scope.isLoading = false;
+            });
         }
     });
 
