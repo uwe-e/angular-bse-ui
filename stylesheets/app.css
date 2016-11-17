@@ -52,81 +52,14 @@ header.shellbar {
 
 .ui-grid-filter-container { display: none!important; }
 
-.shellbar {
-    color: #777;
+h2{
+    font-size:20px;
+}
+
+.tile .tile-base .glyphicon, .tile .tile-base   .fa {
     position: absolute;
-    top: 4px;
-    height: 50px;
-    left: 0;
-    right: 0;
-    z-index: 3;
-    overflow: hidden;
-}
-
-.shellbar .glyphicon, .shellbar a{
-    color: #777;
-}
-
-.shellbar-content {
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-}
-
-.shellbar-header-left {
-    left: 0;
-    max-width: 265px;
-    white-space: nowrap;
-}
-
-.shellbar-header-center{
-    flex-grow: 1;
-}
-
-.shellbar-header-right {
-    right: 0;
-    max-width: 25.5rem;
-    white-space: nowrap;
-    z-index: 1;
-}
-
-.shellbar-header-item {
-    text-decoration: none;
-    overflow: hidden;
-    position: relative;
-    line-height: 50px;
-    display: inline-block;
-    vertical-align: top;
-    height: 100%;
-}
-
-a.shellbar-header-item:hover {
-    cursor: pointer;
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.header-navbar-title {
-    font-size: 2.0rem;
-    font-weight: bolder;
-    width: 100%;
-    text-align: center;
-    line-height: 50px
-}
-
-.action-btn-icon{
-    padding-left: 9px;
-    padding-right: 9px;
-}
-
-.action-btn-ext{
-    margin-right: 4px;
-}
-
-.btn-group-right{
-    float: right!important;
+    bottom: 1px;
+    top: auto;
+    margin-left: 2px;
+    color: #007CC0;
 }

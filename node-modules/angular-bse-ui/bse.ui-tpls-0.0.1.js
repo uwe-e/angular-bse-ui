@@ -1,5 +1,5 @@
-angular.module("bse.ui", ["bse.ui.tpls", "bse.ui.core", "bse.ui.application", "bse.ui.charts", "bse.ui.filterbar", "bse.ui.icontabs", "bse.ui.listreport", "bse.ui.tiles", "bse.ui.views"]);
-angular.module("bse.ui.tpls", ["template/application/content.html", "template/charts/chartarea.html", "template/charts/charttoolbar.html", "template/filterbar/filterbar.html", "template/icontabs/icontab.html", "template/icontabs/icontabset.html", "template/listreport/listreport.html", "template/listreport/toolbar.html", "template/tiles/tilecontainer.html", "template/views/content.html", "template/views/footer.html", "template/views/header.html", "template/views/headernavigation.html", "template/views/messagepanel.html", "template/views/overflowpanel.html", "template/views/view.html"]);
+angular.module("bse.ui", ["bse.ui.tpls", "bse.ui.core","bse.ui.application","bse.ui.charts","bse.ui.filterbar","bse.ui.icontabs","bse.ui.listreport","bse.ui.shell","bse.ui.tiles","bse.ui.views"]);
+angular.module("bse.ui.tpls", ["template/application/content.html","template/charts/chartarea.html","template/charts/charttoolbar.html","template/filterbar/filterbar.html","template/icontabs/icontab.html","template/icontabs/icontabset.html","template/listreport/listreport.html","template/listreport/toolbar.html","template/tiles/tilecontainer.html","template/views/content.html","template/views/footer.html","template/views/header.html","template/views/headernavigation.html","template/views/messagepanel.html","template/views/overflowpanel.html","template/views/view.html"]);
 angular.module('bse.ui.core', [])
     .service('$bsecore', function () {
         var coreService = function () {
@@ -535,6 +535,7 @@ angular.module('bse.ui.listreport', [])
             }
         };
     });
+angular.module("bse.ui.shell", [])
 angular.module('bse.ui.tiles', [])
     .directive('bseTileContainer', function () {
         return {
@@ -832,135 +833,135 @@ angular.module("bse.ui.views", [])
             }
         };
     }]);
-angular.module("template/application/content.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/application/content.html",
-      "<section class=\"application-content\" ng-transclude></section>\n" +
-      "");
+angular.module("template/application/content.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/application/content.html",
+    "<section class=\"application-content\" ng-transclude></section>\n" +
+    "");
 }]);
 
-angular.module("template/charts/chartarea.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/charts/chartarea.html",
-      "<div class=\"panel chart-area\" bse-auto-resize>\n" +
-      "    <h2 bse-chart-area-transclude=\"heading\"><span bse-chart-area-header>{{heading}}</span></h2>\n" +
-      "    <canvas class=\"chart-base\"></canvas>\n" +
-      "    <div ng-transclude></div>\n" +
-      "</div>");
+angular.module("template/charts/chartarea.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/charts/chartarea.html",
+    "<div class=\"panel chart-area\" bse-auto-resize>\n" +
+    "    <h2 bse-chart-area-transclude=\"heading\"><span bse-chart-area-header>{{heading}}</span></h2>\n" +
+    "    <canvas class=\"chart-base\"></canvas>\n" +
+    "    <div ng-transclude></div>\n" +
+    "</div>");
 }]);
 
-angular.module("template/charts/charttoolbar.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/charts/charttoolbar.html",
-      "<nav class=\"navbar navbar-toolbar navbar-default chart-toolbar view-content-toolbar\" role=\"toolbar\" >\n" +
-      "    <div class=\"container-fluid\" ng-transclude></div>\n" +
-      "</nav>\n" +
-      "");
+angular.module("template/charts/charttoolbar.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/charts/charttoolbar.html",
+    "<nav class=\"navbar navbar-toolbar navbar-default chart-toolbar view-content-toolbar\" role=\"toolbar\" >\n" +
+    "    <div class=\"container-fluid\" ng-transclude></div>\n" +
+    "</nav>\n" +
+    "");
 }]);
 
-angular.module("template/filterbar/filterbar.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/filterbar/filterbar.html",
-      "<div class=\"filterbar panel\">\n" +
-      "    <div>\n" +
-      "        <nav class=\"navbar\">\n" +
-      "            <div class=\"container\">\n" +
-      "                <div class=\"btn-group btn-group-right\">\n" +
-      "                    <button type=\"button\" class=\"btn btn-default navbar-btn btn-collapse-filterbar\">{{texthide}}</button>\n" +
-      "                    <button type=\"button\" class=\"btn btn-primary navbar-btn btn-execute-filter\">{{textgo}}</button>\n" +
-      "                </div>\n" +
-      "            </div>\n" +
-      "        </nav>\n" +
-      "    </div>\n" +
-      "    <div bse-filter-bar-collapse=\"{{collapse}}\" ng-transclude></div>\n" +
-      "</div>");
+angular.module("template/filterbar/filterbar.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/filterbar/filterbar.html",
+    "<div class=\"filterbar panel\">\n" +
+    "    <div>\n" +
+    "        <nav class=\"navbar\">\n" +
+    "            <div class=\"container\">\n" +
+    "                <div class=\"btn-group btn-group-right\">\n" +
+    "                    <button type=\"button\" class=\"btn btn-default navbar-btn btn-collapse-filterbar\">{{texthide}}</button>\n" +
+    "                    <button type=\"button\" class=\"btn btn-primary navbar-btn btn-execute-filter\">{{textgo}}</button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </nav>\n" +
+    "    </div>\n" +
+    "    <div bse-filter-bar-collapse=\"{{collapse}}\" ng-transclude></div>\n" +
+    "</div>");
 }]);
 
-angular.module("template/icontabs/icontab.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/icontabs/icontab.html",
-      "<div class=\"icon-tab-item\" ng-class=\"{active: active}\" ng-click=\"select()\">\n" +
-      "    <div class=\"icon-tab-item-icon-pane\"></div>\n" +
-      "    <div class=\"icon-tab-item-text\"></div>\n" +
-      "    <div class=\"icon-tab-item-arrow\"></div>\n" +
-      "</div>\n" +
-      "");
+angular.module("template/icontabs/icontab.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/icontabs/icontab.html",
+    "<div class=\"icon-tab-item\" ng-class=\"{active: active}\" ng-click=\"select()\">\n" +
+    "    <div class=\"icon-tab-item-icon-pane\"></div>\n" +
+    "    <div class=\"icon-tab-item-text\"></div>\n" +
+    "    <div class=\"icon-tab-item-arrow\"></div>\n" +
+    "</div>\n" +
+    "");
 }]);
 
-angular.module("template/icontabs/icontabset.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/icontabs/icontabset.html",
-      "<div class=\"icon-tabbar btn-toolbar\" role=\"toolbar\" ng-transclude></div>\n" +
-      "");
+angular.module("template/icontabs/icontabset.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/icontabs/icontabset.html",
+    "<div class=\"icon-tabbar btn-toolbar\" role=\"toolbar\" ng-transclude></div>\n" +
+    "");
 }]);
 
-angular.module("template/listreport/listreport.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/listreport/listreport.html",
-      "<div class=\"panel list-report\" ng-transclude></div>\n" +
-      "");
+angular.module("template/listreport/listreport.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/listreport/listreport.html",
+    "<div class=\"panel list-report\" ng-transclude></div>\n" +
+    "");
 }]);
 
-angular.module("template/listreport/toolbar.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/listreport/toolbar.html",
-      "<nav class=\"navbar navbar-toolbar\" role=\"navigation\">\n" +
-      "    <div class=\"navbar-header\"><h2><span>{{title}}</span></h2></div>\n" +
-      "</nav>");
+angular.module("template/listreport/toolbar.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/listreport/toolbar.html",
+    "<nav class=\"navbar navbar-toolbar\" role=\"navigation\">\n" +
+    "    <div class=\"navbar-header\"><h2><span>{{title}}</span></h2></div>\n" +
+    "</nav>");
 }]);
 
-angular.module("template/tiles/tilecontainer.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/tiles/tilecontainer.html",
-      "<div class=\"tile-container\">\n" +
-      "    <div class=\"tile-container-header\" mch-tile-container-header-transclude=\"title\"><h2><span ui-tile-header-title>{{title}}</span></h2></div>\n" +
-      "    <div class=\"row tile-container-group\" ng-transclude></div>\n" +
-      "</div>");
+angular.module("template/tiles/tilecontainer.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/tiles/tilecontainer.html",
+    "<div class=\"tile-container\">\n" +
+    "    <div class=\"tile-container-header\" mch-tile-container-header-transclude=\"title\"><h2><span ui-tile-header-title>{{title}}</span></h2></div>\n" +
+    "    <div class=\"row tile-container-group\" ng-transclude></div>\n" +
+    "</div>");
 }]);
 
-angular.module("template/views/content.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/views/content.html",
-      "<section class=\"view-content\">\n" +
-      "    <div class=\"workplace container-fluid\" ng-transclude></div>\n" +
-      "</section>\n" +
-      "");
+angular.module("template/views/content.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/views/content.html",
+    "<section class=\"view-content\">\n" +
+    "    <div class=\"workplace container-fluid\" ng-transclude></div>\n" +
+    "</section>\n" +
+    "");
 }]);
 
-angular.module("template/views/footer.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/views/footer.html",
-      "<footer class=\"view-footer navbar navbar-inverse\">\n" +
-      "    <div class=\"container\" ng-transclude></div>\n" +
-      "</footer>");
+angular.module("template/views/footer.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/views/footer.html",
+    "<footer class=\"view-footer navbar navbar-inverse\">\n" +
+    "    <div class=\"container\" ng-transclude></div>\n" +
+    "</footer>");
 }]);
 
-angular.module("template/views/header.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/views/header.html",
-      "<header class=\"view-header navbar navbar-default\">\n" +
-      "    <div class=\"container-fluid\">\n" +
-      "        <div ng-transclude></div>\n" +
-      "        <div class=\"collapse navbar-collapse\">\n" +
-      "            <h1 mch-view-title-transclude=\"title\"><small><span ui-view-title>{{title}}</span></small></h1>\n" +
-      "        </div>\n" +
-      "    </div>\n" +
-      "</header>");
+angular.module("template/views/header.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/views/header.html",
+    "<header class=\"view-header navbar navbar-default\">\n" +
+    "    <div class=\"container-fluid\">\n" +
+    "        <div ng-transclude></div>\n" +
+    "        <div class=\"collapse navbar-collapse\">\n" +
+    "            <h1 mch-view-title-transclude=\"title\"><small><span ui-view-title>{{title}}</span></small></h1>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</header>");
 }]);
 
-angular.module("template/views/headernavigation.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/views/headernavigation.html",
-      "<div class=\"view-header-navigation navbar-header\">\n" +
-      "    <a class=\"navbar-brand\"><span class=\"glyphicon glyphicon-arrow-left\" aria-hidden=\"true\"></span></a>\n" +
-      "</div>");
+angular.module("template/views/headernavigation.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/views/headernavigation.html",
+    "<div class=\"view-header-navigation navbar-header\">\n" +
+    "    <a class=\"navbar-brand\"><span class=\"glyphicon glyphicon-arrow-left\" aria-hidden=\"true\"></span></a>\n" +
+    "</div>");
 }]);
 
-angular.module("template/views/messagepanel.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/views/messagepanel.html",
-      "<div class=\"messagepanel\">\n" +
-      "    <section class=\"panel-body\"></section>\n" +
-      "</div>\n" +
-      "");
+angular.module("template/views/messagepanel.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/views/messagepanel.html",
+    "<div class=\"messagepanel\">\n" +
+    "    <section class=\"panel-body\"></section>\n" +
+    "</div>\n" +
+    "");
 }]);
 
-angular.module("template/views/overflowpanel.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/views/overflowpanel.html",
-      "<div class=\"overflowpanel loading-information\">\n" +
-      "    <div class=\"loading-spinner\"></div>\n" +
-      "</div>");
+angular.module("template/views/overflowpanel.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/views/overflowpanel.html",
+    "<div class=\"overflowpanel loading-information\">\n" +
+    "    <div class=\"loading-spinner\"></div>\n" +
+    "</div>");
 }]);
 
-angular.module("template/views/view.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/views/view.html",
-      "<div class=\"view-container-central-box\">\n" +
-      "    <div class=\"view-container\" ng-transclude></div>\n" +
-      "</div>");
+angular.module("template/views/view.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/views/view.html",
+    "<div class=\"view-container-central-box\">\n" +
+    "    <div class=\"view-container\" ng-transclude></div>\n" +
+    "</div>");
 }]);
