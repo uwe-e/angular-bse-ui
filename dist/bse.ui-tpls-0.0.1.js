@@ -535,6 +535,7 @@ angular.module('bse.ui.listreport', [])
             }
         };
     });
+angular.module("bse.ui.shell", [])
 angular.module('bse.ui.tiles', [])
     .directive('bseTileContainer', function () {
         return {

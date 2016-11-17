@@ -1,0 +1,1 @@
+﻿angular.module("bse.ui.shell", [])

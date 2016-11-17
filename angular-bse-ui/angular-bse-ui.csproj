@@ -75,6 +75,7 @@
     <Content Include="package.json" />
     <Content Include="bower.json" />
     <Content Include="src\application\_application.scss" />
+    <Content Include="src\shell\shell.js" />
     <Content Include="src\views\_views.scss" />
     <Content Include="src\tiles\_tiles.scss" />
     <Content Include="src\application\_slider.scss" />
