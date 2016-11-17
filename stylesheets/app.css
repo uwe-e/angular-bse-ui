@@ -85,7 +85,7 @@ header.shellbar {
 
 .shellbar-header-left, .shellbar-header-center, .shellbar-header-right {
     display: inline-block;
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     bottom: 0;
     overflow: hidden;
@@ -100,7 +100,7 @@ header.shellbar {
 
 .shellbar-header-center{
     /*text-align: center;*/
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .shellbar-header-right {
