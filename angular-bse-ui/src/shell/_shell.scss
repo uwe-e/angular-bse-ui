@@ -51,10 +51,41 @@
     height: 100%;
 }
 
+.shellbar-header-item > span{
+    height: 50px;
+    line-height: 50px;
+}
+
 a.shellbar-header-item:hover {
     cursor: pointer;
     text-decoration: none;
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.shellbar-header-user-item {
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    line-height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}
+
+.shellbar-header-user-item:hover {
+        cursor: pointer;
+        text-decoration: none;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+.shellbar-header-user-item > * {
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    line-height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
 }
 
 .header-navbar-title {

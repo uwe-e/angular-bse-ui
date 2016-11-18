@@ -6,7 +6,28 @@
   height: 100%;
   width: 100%; }
 
+.application-content {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 54px;
+  background: #2da9b1;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#2da9b1, #1a4c7d);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#2da9b1, #1a4c7d);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#2da9b1, #1a4c7d);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#2da9b1, #1a4c7d);
+  /* Standard syntax (must be last) */ }
+
 /*bootstrap overrides*/
+h2 {
+  font-size: 20px; }
+
 .navbar {
   margin-bottom: 0px;
   border-radius: 0; }
@@ -192,10 +213,37 @@
   vertical-align: top;
   height: 100%; }
 
+.shellbar-header-item > span {
+  height: 50px;
+  line-height: 50px; }
+
 a.shellbar-header-item:hover {
   cursor: pointer;
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.1); }
+
+.shellbar-header-user-item {
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  line-height: 50px;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%; }
+
+.shellbar-header-user-item:hover {
+  cursor: pointer;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.1); }
+
+.shellbar-header-user-item > * {
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  line-height: 50px;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%; }
 
 .header-navbar-title {
   font-size: 2.0rem;
@@ -239,6 +287,12 @@ a.shellbar-header-item:hover {
     bottom: 1px;
     top: auto;
     font-size: 26px;
+    color: #007CC0; }
+  .tile .tile .tile-base .fa {
+    position: absolute;
+    bottom: 1px;
+    top: auto;
+    margin-left: 2px;
     color: #007CC0; }
 
 .view {
