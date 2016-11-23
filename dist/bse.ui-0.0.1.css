@@ -215,6 +215,10 @@
   -ms-user-select: none;
   -webkit-user-select: none; }
 
+/*adapts the line-height statement for a fontawesome icon within used within the icon-container*/
+.icon-container.fa {
+  line-height: 44px !important; }
+
 .tab-item-filter .icon-tab-item-count {
   color: #333333;
   text-shadow: 0 1px rgba(255, 255, 255, 0.5);
