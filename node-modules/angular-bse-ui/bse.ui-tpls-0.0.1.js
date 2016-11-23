@@ -419,6 +419,7 @@ angular.module('bse.ui.icontabs', [])
                 var paneElement = angular.element(element[0].querySelector('.icon-tab-item-icon-pane'));
                 var textElement = angular.element(element[0].querySelector('.icon-tab-item-text'));
                 var arrowElement = angular.element(element[0].querySelector('.icon-tab-item-arrow'));
+
                 var hasIcon, showAll;
 
                 tabElement.addClass('tab-item-orientation-vertical');
@@ -430,7 +431,7 @@ angular.module('bse.ui.icontabs', [])
                     tabElement.removeClass('tab-item-filter');
                     tabElement.addClass('tab-item-all');
                 }
-                
+
                 var color = attrs.color;
                 if (!angular.isDefined(color)) {
                     color = 'tab-primary';
