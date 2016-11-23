@@ -87,6 +87,10 @@ a.shellbar-header-item:hover {
     vertical-align: top;
     height: 100%;
 }
+/*adapts the line-height statement for a fontawesome icon within used within the shellbar-header-user-item*/
+.shellbar-header-user-item .fa{
+    line-height: 50px;
+}
 
 .header-navbar-title {
     font-size: 2.0rem;
