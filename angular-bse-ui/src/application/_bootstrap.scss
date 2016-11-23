@@ -1,0 +1,10 @@
+﻿/*bootstrap overrides*/
+.btn {
+    border-radius: 0px;
+}
+.form-control {
+    border-radius: 0px;
+}
+.form-group-sm .form-control {
+    border-radius: unset;
+}

@@ -31,6 +31,11 @@
                 tab: tab,
                 index: tab.index
             });
+
+            if (tab.index === ctrl.active || !angular.isDefined(ctrl.active) && ctrl.tabs.length === 1) {
+                var newActiveIndex = findTabIndex(tab.index);
+                ctrl.select(newActiveIndex);
+            }
         };
 
         ctrl.removeTab = function removeTab(tab) {
@@ -76,7 +81,7 @@
     })
     .directive('bseIconTab', ['$document', function ($document) {
         return {
-            require: '^BseIconTabset',
+            require: '^bseIconTabset',
             transclude: true,
             replace: true,
             templateUrl: function (element, attrs) {
@@ -86,6 +91,7 @@
             controller: function () {
             },
             scope: {
+                showAll: '=?',
                 text: '@',
                 count: '@',
                 icon: '@',
@@ -101,18 +107,27 @@
                 var textElement = angular.element(element[0].querySelector('.icon-tab-item-text'));
                 var arrowElement = angular.element(element[0].querySelector('.icon-tab-item-arrow'));
 
-                var hasIcon;
+                var hasIcon, showAll;
 
                 tabElement.addClass('tab-item-orientation-vertical');
+                tabElement.addClass('tab-item-filter');
+
+                showAll = scope.$eval(attrs.showAll);
+
+                if (showAll) {
+                    tabElement.removeClass('tab-item-filter');
+                    tabElement.addClass('tab-item-all');
+                }
+
                 var color = attrs.color;
                 if (!angular.isDefined(color)) {
                     color = 'tab-primary';
                 }
 
-                var iconElement = createElement(attrs.icon, 'div');
-                if (iconElement) {
+                var iconElement = createElement(attrs.icon, 'span');
+                if (iconElement && !showAll) {
                     hasIcon = true;
-                    iconElement.addClass('icon-container' + ' ' + color + ' ' + 'glyphicon' + ' ' + attrs.icon);
+                    iconElement.addClass('icon-container' + ' ' + color + ' ' + attrs.icon);
                     paneElement.append(iconElement);
                 }
 

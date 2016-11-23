@@ -4,6 +4,13 @@
             color: #fff;
             font-size: 24px;
         }
+
+        h4 {
+            font-size: 14px;
+            color: #666;
+            text-overflow: ellipsis;
+            margin: 0px;
+        }
     }
 }
 
@@ -42,7 +49,7 @@
         color: #007CC0;
     }
 
-    .tile .tile-base .fa {
+    .tile-base .fa {
         position: absolute;
         bottom: 1px;
         top: auto;

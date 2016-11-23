@@ -87,6 +87,8 @@
     <Content Include="src\filterbar\_filterbar.scss" />
     <Content Include="src\charts\_charts.scss" />
     <Content Include="src\shell\_shell.scss" />
+    <Content Include="src\icontabs\_icontabs.scss" />
+    <Content Include="src\application\_bootstrap.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
