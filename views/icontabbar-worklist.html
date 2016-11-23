@@ -1,0 +1,17 @@
+<bse-view-header title="Sample: Icon Tab Bar - Filter">
+</bse-view-header>
+<bse-view-content>
+    <bse-icon-tabset>
+        <bse-icon-tab text="Users" count="{{recordsCount}}" show-all="true" select="loadData()"></bse-icon-tab>
+        <bse-icon-tab text="Female" icon="fa fa-2x fa-female" color="tab-warning" count="{{ (users | filter : {'gender': 'female'} : true ).length }}" select="executeFilter('female')"></bse-icon-tab>
+        <bse-icon-tab icon="fa fa-2x fa-male" text="Male" color="tab-danger" count="{{ (users | filter : {'gender': 'male'} : true).length }}" select="executeFilter('male')"></bse-icon-tab>
+        <bse-icon-tab icon="fa fa-2x fa-globe" text="From Alaska" count="{{ (users | filter : {address: {'state': 'Alaska'} } : true).length }}" select="executeFilter('alaska')"></bse-icon-tab>
+        <bse-icon-tab icon="fa fa-2x fa-flag" text="From Virginia" color="tab-info" count="{{ (users | filter : {address: {'state': 'Virginia'} } : true).length }}" select="executeFilter('virginia')"></bse-icon-tab>
+    </bse-icon-tabset>
+    <bse-list-report>
+        <bse-list-report-toolbar title="Records ({{recordsCount}})"></bse-list-report-toolbar>
+        <div ui-grid="grid" class="gridpanel" ui-grid-auto-resize bse-auto-resize ui-grid-selection>
+            <bse-overflow-panel is-Loading="isLoading"></bse-overflow-panel>
+        </div>
+    </bse-list-report>
+</bse-view-content>

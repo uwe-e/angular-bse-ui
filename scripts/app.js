@@ -29,6 +29,26 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
                 controller: 'masterDetailAddressController'
             }
         }
+    }).state('icontabbar', {
+        url: '/icontabbar',
+        templateUrl: 'views/icontabbar.html'
+    }).state('icontabbar.worklist', {
+        url: '/worklist',
+        sticky: true,
+        views: {
+            'worklist': {
+                templateUrl: 'views/icontabbar-worklist.html',
+                controller: 'iconTabBarWorklistController'
+            }
+        }
+    }).state('icontabbar.address', {
+        url: '/address/:userid',
+        views: {
+            'address': {
+                templateUrl: 'views/icontabbar-address.html',
+                controller: 'iconTabBarAddressController'
+            }
+        }
     });
 }).factory('dataFactory', function ($http) {
     return {
@@ -75,7 +95,6 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
             enableRowSelection: true,
             enableRowHeaderSelection: false,
             enableFiltering: true,
-            //useExternalFiltering: true,
             multiSelect: false,
             rowTemplate: '<div ng-click="grid.appScope.onRowSelected(row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.uid" class="ui-grid-cell" ng-class="col.colIndex()" ui-grid-cell></div>',
             columnDefs: [
@@ -143,6 +162,102 @@ var myApp = angular.module('myApp', ['ngTouch', 'ngSanitize', 'ngAnimate', 'ui.b
 
         $scope.gotoWorklist = function () {
             $state.goBack('masterdetail.worklist');
+        }
+
+        function loadData() {
+            $scope.isLoading = true;
+            dataFactory.getData().then(function (response) {
+                $scope.users = angular.fromJson(response.data);
+                return $filter('filter')($scope.users, { id: $scope.userId }, true)[0];
+            }).then(function (user) {
+                $scope.user = user;
+            }).then(function () {
+                $scope.isLoading = false;
+            });
+        }
+    })
+    .controller('iconTabBarWorklistController', function ($scope, $http, $state, $stateParams, $filter, uiGridConstants, dataFactory) {
+        $scope.filter = {};
+        $scope.grid = {
+            enableRowSelection: true,
+            enableRowHeaderSelection: false,
+            enableFiltering: true,
+            multiSelect: false,
+            rowTemplate: '<div ng-click="grid.appScope.onRowSelected(row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.uid" class="ui-grid-cell" ng-class="col.colIndex()" ui-grid-cell></div>',
+            columnDefs: [
+                      { field: 'id' },
+                      { field: 'name', name: 'name', width: 200, pinnedLeft: true },
+                      { name: 'gender', width: 100 },
+                      { name: 'address.street', width: 150 },
+                      { name: 'address.city', width: 150 },
+                      { field: 'address.state', name: 'address.state', width: 150 },
+                      { name: 'address.zip', width: 50 },
+                      { name: 'company', width: 150 },
+                      { name: 'email', width: 200 },
+                      { name: 'phone', width: 150 },
+            ],
+            onRegisterApi: function (gridApi) {
+                $scope.gridApi = gridApi;
+            }
+        };
+
+        $scope.users = [];
+        $scope.grid.data = [];
+
+        $scope.loadData = loadData;
+
+        $scope.executeFilter = function (key){
+            switch (key) {
+                case 'male':
+                case 'female':
+                    $scope.gridApi.grid.columns[2].filters[0] = {
+                        term: key,
+                        condition: uiGridConstants.filter.EXACT
+                    }
+                    break;
+                case 'alaska':
+                case 'virginia':
+                    $scope.gridApi.grid.columns[5].filters[0] = {
+                        term: key,
+                        condition: uiGridConstants.filter.EXACT
+                    }
+                    break;
+                default:
+                    $scope.gridApi.grid.clearAllFilters();
+            }
+        }
+
+        $scope.onRowSelected = function (row) {
+            $state.go('icontabbar.address', { userid: row.entity.id });
+        }
+
+        function loadData() {
+            $scope.isLoading = true;
+            if ($scope.gridApi) {
+                $scope.gridApi.grid.clearAllFilters();
+            }
+
+            dataFactory.getData().then(function (response) {
+                $scope.recordsCount = response.data.length;
+                return response.data;
+            }).then(function (users) {
+                $scope.users = users;
+                $scope.grid.data = users;
+            }).then(function () {
+                $scope.isLoading = false;
+            });
+        }
+    }).controller('iconTabBarAddressController', function ($scope, $http, $state, $stateParams, $filter, dataFactory) {
+        $scope.userId = parseInt($stateParams.userid, 0);
+
+        loadData();
+
+        $scope.saveProfile = function () {
+            $scope.gotoWorklist();
+        }
+
+        $scope.gotoWorklist = function () {
+            $state.goBack('icontabbar.worklist');
         }
 
         function loadData() {
